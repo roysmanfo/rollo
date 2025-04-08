@@ -12,7 +12,6 @@ Cose da inserire nel progetto
 - Francesco -> tavoletta grafica per disegni ecc...
 - Web App Multilingue 
 - Capire come esportarla in formato applicazione
-- Easter Egg di gattini per guadagnare token
 - Sistema di recensioni
 - OTP per i login
 - Grafiche d'impatto
