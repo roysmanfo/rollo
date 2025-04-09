@@ -1,12 +1,19 @@
 # Rollo - Ride Your Way
 
-## Rete 
+## 1. Rete 
 
-## Base di dati
-### Schema entità - relazione
-- Scelta delle entità e associazioni tra esse, generalizzazioni, cardinalità e identificatori
+## 2. Base di dati
+### 2.1 Schema entità - relazione
+- 2.1.1 Documentazione
+### 2.2 Ristrutturazione schema E-R
+### 2.3 Traduzione a schema logico
+### 2.4 Normalizzazione
+### 2.5 Implementazione in MySql
+- 2.5.1 Creazione e Popolazione della base di dati
+- 2.5.2 Query select e testing
+### 2.6 
 
-## WebApp
+## 3. WebApp
 
 
 

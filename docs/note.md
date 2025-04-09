@@ -1,6 +1,6 @@
 # Cose da inserire nel progetto
 
-### Funzionalita Essenziali
+### Funzionalita Essenziali (Vincoli)
 - Basare l'app su dei token con cui possiamo pagare le nostre rides
 - Bonus token per i kilometri percorsi
 - API per il sito web
