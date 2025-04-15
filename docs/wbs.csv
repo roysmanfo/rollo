@@ -1,6 +1,3 @@
-# Piano di Progetto
-## Periodo: 14 aprile 2025 - 14 maggio 2025
-
 Task,Data Inizio,Durata (giorni),Data Fine,Risorse Assegnate,
 Base di dati,,,,,
 1.1 Schema entità - relazione,14-04-2025,2,15-04-2025,Alessandro,
@@ -15,19 +12,19 @@ Rete,,,,,
 2.2 Scelta dei dispositivi di rete per le sedi,15-04-2025,1,15-04-2025,Marco,
 2.3 Cablaggio strutturato,16-04-2025,2,17-04-2025,Marco,
 2.4 Piano di indirizzamento,,,,,
-2.4.1 Definizione dello schema di indirizzamento IP, subnetting, gateway e DNS,18-04-2025,1,18-04-2025,Marco,
+"2.4.1 Definizione dello schema di indirizzamento IP, subnetting, gateway e DNS",18-04-2025,1,18-04-2025,Marco,
 2.4.2 Gestione indirizzi privati/pubblici e implementazione DHCP,19-04-2025,1,19-04-2025,Marco,
 2.5 Tabelle di routing,20-04-2025,1,20-04-2025,Marco,
 2.6 Reti private e servizi,,,,,
 2.6.1 Configurazione NAT statico,21-04-2025,1,21-04-2025,Marco,
 2.6.2 Configurazione NAT dinamico,22-04-2025,1,22-04-2025,Marco,
 2.6.3 Configurazione PAT (NAT Port forwarding),23-04-2025,1,23-04-2025,Marco,
-2.6.4 Reti private con servizi pubblici (WEB, DNS, FTP, MAIL),24-04-2025,2,25-04-2025,Marco,
+"2.6.4 Reti private con servizi pubblici (WEB, DNS, FTP, MAIL)",24-04-2025,2,25-04-2025,Marco,
 2.7 Politiche di routing,,,,,
 2.7.1 Identificazione degli Autonomous System (AS),26-04-2025,1,26-04-2025,Marco,
-2.7.2 Configurazione routing statico/dinamico(RIP, OSPF, BGP),27-04-2025,2,28-04-2025,Marco,
+"2.7.2 Configurazione routing statico/dinamico(RIP, OSPF, BGP)",27-04-2025,2,28-04-2025,Marco,
 2.8 Accesso a Internet e Sicurezza,,,,,
-2.8.1 Configurare l'accesso a Internet e la connessione ad altre reti, utilizzando indirizzi privati e pubblici (DNAT/SNAT/PF),29-04-2025,2,30-04-2025,Marco,
+"2.8.1 Configurare l'accesso a Internet e la connessione ad altre reti, utilizzando indirizzi privati e pubblici (DNAT/SNAT/PF)",29-04-2025,2,30-04-2025,Marco,
 2.8.2 Realizzazione rete TRUST/DMZ per la sicurezza,01-05-2025,2,02-05-2025,Marco,
 2.9 Internetworking,,,,,
 2.9.1 Configurazione router e VPN,03-05-2025,2,04-05-2025,Marco,
@@ -35,10 +32,10 @@ Rete,,,,,
 "2.9.3 Scelta di un servizio cloud (tra IaaS, PaaS, SaaS, FaaS, CaaS)",06-05-2025,1,06-05-2025,Marco,
 2.10 Sistema monitoraggio biciclette con IoT (Prototipo),,,,,
 2.10.1 Acquisto e preparazione dei componenti,,,,,
-2.10.1.1 Reperimento dei componenti hardware (ESP32, NEO-6M, breadboard, cavetti, power bank),07-05-2025,2,08-05-2025,Marco,
+"2.10.1.1 Reperimento dei componenti hardware (ESP32, NEO-6M, breadboard, cavetti, power bank)",07-05-2025,2,08-05-2025,Marco,
 2.10.1.2 Verifica della compatibilità tra i moduli e l'ESP32,09-05-2025,1,09-05-2025,Marco,
 2.10.2 Collegamento hardware,,,,,
-2.10.2.1 Collegamento del modulo GPS NEO-6M all'ESP32 tramite UART (RX, TX),10-05-2025,1,10-05-2025,Marco,
+"2.10.2.1 Collegamento del modulo GPS NEO-6M all'ESP32 tramite UART (RX, TX)",10-05-2025,1,10-05-2025,Marco,
 2.10.2.2 Collegamento dell'ESP32 alla breadboard e collegamenti con i cavetti Dupont,11-05-2025,1,11-05-2025,Marco,
 2.10.2.3 Alimentazione del sistema tramite power bank,12-05-2025,1,12-05-2025,Marco,
 2.10.3 Programmazione dell'ESP32,,,,,
@@ -71,21 +68,21 @@ WebApp,,,,
 3.1.1 Creazione delle directory secondo il modello "Model View Controller",14-04-2025,1,14-04-2025,Federica
 3.2 Front-End (React),,,,
 3.2.1 Implementazione visualizzazione mappa con OpenStreetMap,15-04-2025,3,17-04-2025,Federica
-3.2.2 Elenco biciclette disponibili e stato (disponibile, prenotata, guasta),18-04-2025,2,19-04-2025,Federica
+"3.2.2 Elenco biciclette disponibili e stato (disponibile, prenotata, guasta)",18-04-2025,2,19-04-2025,Federica
 3.2.3 Interfaccia responsive e adattiva (desktop/mobile),20-04-2025,3,22-04-2025,Federica
-3.2.4 Multilingua (italiano, inglese),23-04-2025,2,24-04-2025,Federica
+"3.2.4 Multilingua (italiano, inglese)",23-04-2025,2,24-04-2025,Federica
 3.2.5 Sezione profilo utente con storico corse e token,25-04-2025,2,26-04-2025,Federica
 3.2.6 Inserimento e visualizzazione recensioni,27-04-2025,2,28-04-2025,Federica
 3.2.7 Visualizzazione posizione bici in tempo reale da coordinate GPS,29-04-2025,2,30-04-2025,Federica
 3.3 Back-End (PHP),,,,
 3.3.1 Login/registrazione con verifica OTP via email,01-05-2025,2,02-05-2025,Federica
-3.3.2 Endpoint RESTful per operazioni: prenotazione, invio/lettura coordinate, gestione token, recensioni,03-05-2025,3,05-05-2025,Federica
+"3.3.2 Endpoint RESTful per operazioni: prenotazione, invio/lettura coordinate, gestione token, recensioni",03-05-2025,3,05-05-2025,Federica
 3.3.3 Integrazione completa con MySQL,06-05-2025,2,07-05-2025,Federica
 3.3.4 Validazione codice voucher/token e gestione premi,08-05-2025,2,09-05-2025,Federica
-3.3.5 Sistema di sicurezza: gestione sessioni, protezione CSRF/XSS, validazione input,10-05-2025,2,11-05-2025,Federica
+"3.3.5 Sistema di sicurezza: gestione sessioni, protezione CSRF/XSS, validazione input",10-05-2025,2,11-05-2025,Federica
 3.4 Versione Mobile (React Native),,,,
 3.4.1 Conversione interfaccia in formato app mobile (con PWA o React Native),12-05-2025,1,12-05-2025,Federica
-3.4.2 Notifiche push per promemoria prenotazione, token e manutenzione,13-05-2025,1,13-05-2025,Federica
+"3.4.2 Notifiche push per promemoria prenotazione, token e manutenzione",13-05-2025,1,13-05-2025,Federica
 3.4.3 Integrazione con funzioni native (GPS per localizzazione utente),14-05-2025,1,14-05-2025,Federica
 3.5 Sicurezza e GDPR,,,,
 3.5.1 Implementazione gestione cookie e consensi privacy,12-05-2025,1,12-05-2025,Alessandro
