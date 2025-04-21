@@ -9,6 +9,22 @@
 		<!-- DA COMPLETARE...-->
 		<h1>Rollo - Ride your way</h1>
 		<h2>Schema logico</h2>
-		<p>Utenti(<u>id_Utente</u>, denis, popa)</p>
+		<p>Utenti(<u>id_Utente</u>, nome, cognome, email, password)</p>
+		<p>
+			Noleggi (<u>id_Noleggio</u>, data, ora_Inizio, ora_Fine,
+			distanza_Percorsa, prezzo, <i>utente</i>, <i>bicicletta</i>)
+		</p>
+		<p>
+			Biciclette (<u>id_Bicicletta</u>, modello, <i>scheda_IoT</i>,
+			<i>sede_appartenenza</i>)
+		</p>
+		<p>
+			IoT (<u>id_Dispositivo</u>, latitudine, longitudine,
+			data_Installazione, data_Revisione)
+		</p>
+		<p>
+			Sedi (<u>id_Sede</u>, nome, comune, cap, via, civico,
+			num_Biciclette_Gestite, telefono)
+		</p>
 	</body>
 </html>
