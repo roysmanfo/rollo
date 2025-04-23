@@ -36,6 +36,7 @@ CREATE TABLE Biciclette (
     modello VARCHAR(100) NOT NULL,
     scheda_IoT MEDIUMINT,
     sede_appartenenza SMALLINT,
+    stato BOOLEAN NOT NULL DEFAULT TRUE,
     FOREIGN KEY (scheda_IoT) REFERENCES IoT(id_Dispositivo),
     FOREIGN KEY (sede_appartenenza) REFERENCES Sedi(id_Sede)
 );
@@ -76,7 +77,7 @@ JOIN Biciclette B ON N.bicicletta = B.id_Bicicletta;
 
 -- VISTA: Stato biciclette e ultima posizione
 CREATE VIEW Vista_Stato_Biciclette AS
-SELECT B.id_Bicicletta, B.modello, I.latitudine, I.longitudine, S.nome AS sede
+SELECT B.id_Bicicletta, B.modello, B.stato, I.latitudine, I.longitudine, S.nome AS sede
 FROM Biciclette B
 JOIN IoT I ON B.scheda_IoT = I.id_Dispositivo
 JOIN Sedi S ON B.sede_appartenenza = S.id_Sede;
@@ -86,7 +87,7 @@ JOIN Sedi S ON B.sede_appartenenza = S.id_Sede;
 SELECT * FROM Vista_Noleggi_Completa WHERE nome = 'Marco' AND cognome = 'Rossi';
 
 -- Biciclette disponibili in una sede
-SELECT id_Bicicletta, modello
+SELECT id_Bicicletta, modello, stato
 FROM Biciclette
 WHERE sede_appartenenza = 1;
 
