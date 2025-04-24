@@ -1,9 +1,9 @@
 
 # Piano di indirizzamento
 
-Indirizzo pubblico: `137.0.0.0/22`
-Indirizzo privato: `10.x.y.0/19` (~1000 host disponibili per ogni rete)
-Rete per routing: `172.0.0.y/30` (2 host per rete)
+Indirizzo pubblico: `137.0.0.0/22`  
+Indirizzo privato: `10.x.y.0/19` (~1000 host disponibili per ogni rete)  
+Rete per routing: `172.0.0.y/30` (2 host per rete)  
 Algoritmo di routing tra sedi: RIPv2
 ## Indirizzi all'interno delle sedi
 Rete Principale: `10.0.0.0/19` (4 subnet + 6 inutilizzate)
