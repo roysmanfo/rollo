@@ -2,19 +2,19 @@
 # Piano di indirizzamento
 
 Indirizzo pubblico: `137.0.0.0/22`  
-Indirizzo privato: `10.x.y.0/19` (~1000 host disponibili per ogni rete)  
-Rete per routing: `172.0.0.y/30` (2 host per rete)  
+Indirizzo privato: `172.160.0.0/23` (512 host disponibili per ogni rete, tra cui 256 pc e 256 wifi tutti in dhcp)  
+Rete per routing: `200.100.40.y/30` (2 host per rete)  
 Algoritmo di routing tra sedi: RIPv2
 ## Indirizzi all'interno delle sedi
-Rete Principale: `10.0.0.0/19` (4 subnet + 6 inutilizzate)
+Rete Principale: `172.160.0.0/23` (128 subnet di cui 5 utilizzate)
 
 | Sede       | Subnet   | Primo host | Ultimo host | Broadcast |
 | ---------- | ------ | --------- | ------ | -------- |
-| Centrale   | `10.0.0.0/22` |  `10.0.0.1` | `10.0.3.254` | `10.0.3.255` |
-| Sede Nord  | `10.0.4.0/22` |  `10.0.4.1` | `10.0.7.254` | `10.0.7.255` |
-| Sede Sud   | `10.0.8.0/22` |  `10.0.8.1` | `10.0.11.254` | `10.0.11.255` |
-| Sede Est   | `10.0.12.0/22` | `10.0.12.1` | `10.0.15.254` | `10.0.15.255` |
-| Sede Ovest | `10.0.16.0/22` | `10.0.16.1` | `10.0.19.254` | `10.0.19.255` |
+| Centrale   | `172.160.0.0/23` |  `172.160.0.1` | `172.160.1.254` | `172.160.1.255` |
+| Sede Nord  | `172.160.2.0/23` |  `172.160.2.1` | `172.160.3.254` | `172.160.3.255` |
+| Sede Sud   | `172.160.4.0/23` |  `172.160.4.1` | `172.160.5.254` | `172.160.5.255` |
+| Sede Est   | `172.160.6.0/23` | `172.160.6.1` | `172.160.7.254` | `172.160.7.255` |
+| Sede Ovest | `172.160.8.0/23` | `172.160.8.1` | `172.160.9.254` | `172.160.9.255` |
 
 ### Sede Centrale
 - IP pubblico statico
