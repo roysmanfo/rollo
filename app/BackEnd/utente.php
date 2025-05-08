@@ -6,12 +6,18 @@ if($mysqli -> connect_error){
 }
 //controllo metodo server uguale a post
 if($_SERVER[REQUEST_METHOD]=="POST"){
-    $stmt = $mysqli -> prepare("SELECT * FROM Utenti WHERE ");
-    //Inserimento informazioni Utente
+    session_start();
+    //Controllo se l'utente è loggato
+    $stmt = $mysqli -> prepare("SELECT * FROM Utenti WHERE idUtente = ?, nome = ?, cognome = ?, email = ?, password = ?");
+    //Inserimento informazioni utente
     $idUtente = htmlentities($_POST['idUtente']);
     $nome = htmlentities($_POST['nome']);
     $cognome = htmlentities($_POST['cognome']);
     $email = htmlentities($_POST['email']);
+    $password = htmlentities($_POST['password']);
+    $stmt -> bind_param("issss", $idUtente, $nome, $cognome, $email, $password);
+    $stmt -> execute();
+    $result = $stmt -> get_result();
     //Generazione codice OTP per email
     if(!empty($email)){
         $resultEmail = mysqli_query($conn, "SELECT * FROM Utente WHERE email='$email'");
@@ -43,7 +49,6 @@ if($_SERVER[REQUEST_METHOD]=="POST"){
     }
 }
     //Gestione password
-    $password = htmlentities($_POST['password']);
     $salt = bin2hex(random_bytes(16));
     $saltedPassword = $salt . $password;
     $hashedPassword = hash('sha256', $saltedPassword);
@@ -55,6 +60,18 @@ if($_SERVER[REQUEST_METHOD]=="POST"){
         echo "Password corretta!";
     } else {
         echo "Password errata!";
+    }
+    
+    //Gestione sessione per login
+    if($result -> num_rows > 0){
+        $row = $result -> fetch_assoc();
+        $_SESSION['idUtente'] = $row['idUtente'];
+        $_SESSION['nome'] = $row['nome'];
+        $_SESSION['cognome'] = $row['cognome'];
+        $_SESSION['email'] = $row['email'];
+        echo json_encode(array("message"=>"Login effettuato con successo."));
+    } else {
+        echo json_encode(array("message"=>"Login fallito."));
     }
 
 } else {

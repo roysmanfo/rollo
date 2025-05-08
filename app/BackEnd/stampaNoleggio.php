@@ -1,14 +1,18 @@
 <?php
     include("connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $idNoleggio = htmlentities($_POST['idNoleggio']);
-        $query = "SELECT N.id, N.data, N.ora_inizio, N.ora_fine, N.prezzo, 
+        $nome = htmlentities($_POST['nome']);
+        $cognome = htmlentities($_POST['cognome']);
+        $query = $conn -> prepare("SELECT N.id, N.data, N.ora_inizio, N.ora_fine, N.prezzo, 
                                         U.nome, U.cognome, B.modello
                                         FROM noleggi N
                                         JOIN utenti U ON N.utente = U.id
-                                        JOIN biciclette B ON N.bicicletta = B.id;";
-        $result -> query($query);
-        if($row -> $result -> fetch_assoc()){
+                                        JOIN biciclette B ON N.bicicletta = B.id
+                                        WHERE nome = ? AND cognome = ?;");
+        $query -> bind_param("ss", $nome, $cognome);
+        $query -> execute();
+        $result = $query -> get_result();
+        if($row = result -> fetch_assoc()){
             $id = htmlentities($row['id']);
             $data = htmlentities($row['data']);
             $ora_inizio = htmlentities($row['ora_inizio']);
@@ -34,6 +38,8 @@
             exit;
         }
         $conn->close();
+        $query->close();
+        $result->close(); 
     } else {
         echo json_encode(array("message" => "Richiesta non valida."));
     }
