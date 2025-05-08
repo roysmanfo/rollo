@@ -1,0 +1,18 @@
+/* Colors */
+$prussianBlue: rgba(30, 47, 68, 1);
+$antiflashWhite: rgba(244, 248, 251, 1);
+$prussianBlue2: rgba(21, 43, 67, 1);
+$amaranthPurple: rgba(166, 35, 65, 1);
+$paynesGray: rgba(86, 108, 135, 1);
+
+/* Gradients */
+$gradientTop: linear-gradient(0deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientRight: linear-gradient(90deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientBottom: linear-gradient(180deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientLeft: linear-gradient(270deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientTopRight: linear-gradient(45deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientBottomRight: linear-gradient(135deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientTopLeft: linear-gradient(225deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientBottomLeft: linear-gradient(315deg, $prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+$gradientRadial: radial-gradient($prussianBlue, $antiflashWhite, $prussianBlue2, $amaranthPurple, $paynesGray);
+
