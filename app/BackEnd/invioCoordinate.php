@@ -3,7 +3,7 @@
 	include("connessioneXAMPP.php");
 	$data = json_decode(file_get_contents("php://input"),true);
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
-		if(isset($data["id_dispositivo"], $data["latitudine"], $data["longitudine"]){
+		if(isset($data["id_dispositivo"], $data["latitudine"], $data["longitudine"])){
 			//estrazione dei valori passati dallo script Arduino tramite Json
 			$longitudine = $data["longitudine"];
 			$latitudine = $data["latitudine"];
@@ -15,9 +15,9 @@
 			$ris = $stmt -> execute();
 			
 			if($ris && $stmt -> affected_rows>0){
-				echo json_encode(["messaggio" => "posizione aggiornata");
+				echo json_encode(["messaggio" => "posizione aggiornata"]);
 			}else{
-				echo json_encode(["errore" => "Dispositivo non trovato o nessuna modifica apportata alla posizione");
+				echo json_encode(["errore" => "Dispositivo non trovato o nessuna modifica apportata alla posizione"]);
 			}
 		}else{
 			http_response_code(400);
