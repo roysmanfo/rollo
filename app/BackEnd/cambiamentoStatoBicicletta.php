@@ -1,5 +1,5 @@
 <?php
-include("connessioneXAMPP.php");
+include("connessioneDB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     date_default_timezone_set('Europe/Rome'); // Imposta il fuso orario corretto
