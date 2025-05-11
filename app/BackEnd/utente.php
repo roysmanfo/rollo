@@ -1,4 +1,18 @@
 <?php
+    /**
+     * Gestione dell'utente
+     * 
+     * metodo: POST
+     * parametri:
+     *  - idUtente: id dell'utente
+     *  - nome: nome dell'utente
+     *  - cognome: cognome dell'utente
+     *  - email: email dell'utente
+     *  - password: password dell'utente
+     *  - submit_otp?: indica che il client sta inviando un OTP
+     *    - otp: OTP inviato dall'utente
+     */
+
 //connessione database e verifica
 include(connessioneDB.php);
 if($mysqli -> connect_error){
@@ -6,7 +20,7 @@ if($mysqli -> connect_error){
 }
 //controllo metodo server uguale a post
 if($_SERVER[REQUEST_METHOD]=="POST"){
-    $stmt = $mysqli -> prepare("SELECT * FROM Utenti WHERE ");
+    // $stmt = $mysqli -> prepare("SELECT * FROM Utenti WHERE ");
     //Inserimento informazioni Utente
     $idUtente = htmlentities($_POST['idUtente']);
     $nome = htmlentities($_POST['nome']);
@@ -21,6 +35,7 @@ if($_SERVER[REQUEST_METHOD]=="POST"){
             require_once("mail_function.php");
             $mail_status = sendOTP($email, $otp);
             if($mail_status == 1){
+                // safe query, no user-controlled parameters
                 $result = mysqli_query($conn, "INSERT INTO otp_expiry(otp,is_expired,create_at) VALUES ('" . $otp . "', 0, '" . date("Y-m-d H:i:s"). "')");
                 $current_id = mysqli_insert_id($conn);
                 if(!empty($current_id)){
@@ -47,6 +62,8 @@ if($_SERVER[REQUEST_METHOD]=="POST"){
     $salt = bin2hex(random_bytes(16));
     $saltedPassword = $salt . $password;
     $hashedPassword = hash('sha256', $saltedPassword);
+
+    // TODO: effettivamente prendere questi valori
     $saltFromDb = $row['salt'];
     $hashFromDb = $row['hashed_password'];
     $checkHash = hash('sha256', $saltFromDb . $inputPassword);

@@ -1,4 +1,11 @@
 <?php
+	/**
+	 * Riceve i dati corrispondeti alle coordinate di una bici
+	 * 
+	 * metodo: POST
+	 * dati: [json] {latitudine, longitudine, id_dispositivo} 
+	 */
+
 	//Utilizzo header per prendere la longitudine e la latitudine dallo script Arduino ogni tot. secondi
 	include("connessioneDB.php");
 	$data = json_decode(file_get_contents("php://input"),true);
@@ -17,7 +24,8 @@
 			if($ris && $stmt -> affected_rows>0){
 				echo json_encode(["messaggio" => "posizione aggiornata"]);
 			}else{
-				echo json_encode(["errore" => "Dispositivo non trovato o nessuna modifica apportata alla posizione"]);
+				// nessuno status change, quindi non lo segnamo come errore 
+				echo json_encode(["messaggio" => "Dispositivo non trovato o nessuna modifica apportata alla posizione"]);
 			}
 		}else{
 			http_response_code(400);

@@ -1,8 +1,19 @@
 <?php
+
+    /**
+     * Cerca il prezzo (in token) relativo ad un determinato noleggio
+     * 
+     * metodo: POST
+     * parametri:
+     *  - idNoleggio: id del neleggio in questione 
+     */
+
     include("connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $MIN_TOKEN = 0; // TODO: Aaggiornare questo numero 
         $numToken = "SELECT num_token FROM utenti";
-        if($numToken > ){
+        
+        if($numToken > $MIN_TOKEN){
             $idNoleggio = htmlentities($_POST['idNoleggio']);
             $query = $conn -> prepare("SELECT prezzo FROM noleggi WHERE id = ?");
             $query -> bind_param("i", $idNoleggio);
@@ -14,18 +25,19 @@
                 echo json_encode(array("message" => "Noleggio trovato.", "prezzo" => $prezzo));
                 exit;
             } else {
-                echo json_encode(array("message" => "Nessun noleggio trovato."));
+                echo json_encode(array("errore" => "Nessun noleggio trovato."));
                 exit;
             }
-            $numToken -= ;
+            // TODO: aggiornare il numero di token nel backend
+            // $numToken -= ;
         } else {
-            echo json_encode(array("message" => "Numero di token insufficiente."));
+            echo json_encode(array("errore" => "Numero di token insufficiente."));
             exit;
         }
         $conn->close();
         $query->close();
         $result->close();
     } else {
-        echo json_encode(array("message" => "Richiesta non valida."));
+        echo json_encode(array("errore" => "Richiesta non valida."));
     }
 ?>

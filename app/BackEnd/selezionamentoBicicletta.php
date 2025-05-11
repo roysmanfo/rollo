@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Seleziona la prima bicicletta disponibile e la segna come occupata
+ * metodo: POST
+ */
+
 header("Content-Type: application/json");
 include("connessioneDB.php");
 

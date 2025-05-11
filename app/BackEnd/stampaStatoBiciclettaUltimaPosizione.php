@@ -1,4 +1,9 @@
 <?php
+    /**
+     * ??? 🤔 non ho idea di cosa dovrebbe fare questa pagina, non ha senso che ci sia
+     * metodo: POST
+     */
+
     include("connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query = "SELECT B.id, B.modello, B.stato, I.latitudine, I.longitudine, S.nome AS sede
@@ -31,6 +36,7 @@
         $query->close();
         $result->close();
     } else {
+        http_response_code(405);
         echo json_encode(array("message" => "Richiesta non valida."));
     }
 ?>
