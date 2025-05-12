@@ -17,13 +17,27 @@
         $idProdotto = htmlentities($_POST['idProdotto']);
         $voto = htmlentities($_POST['voto']);
         $testo = htmlentities($_POST['testo']);
-
-        // TODO: implementare la logica per aggiornare le recensioni
-
-        if ($recensione->update($idRecensione, $idUtente, $idProdotto, $voto, $testo)) {
-            echo json_encode(array("message" => "Recensione aggiornata con successo."));
+        // Esempio di codice per aggiornare la recensione nel database
+        include("connessioneDB.php");
+        $query = $conn->prepare("UPDATE recensioni SET idUtente = ?, idProdotto = ?, voto = ?, testo = ? WHERE idRecensione = ?");
+        $query->bind_param("iiisi", $idUtente, $idProdotto, $voto, $testo, $idRecensione);
+        $query->execute();
+        $result = $query->get_result();
+        while($recensione = $query->fetch_assoc()){
+        if ($recensione -> update($idRecensione, $idUtente, $idProdotto, $voto, $testo)) {
+            // Se l'aggiornamento è andato a buon fine, restituisci un messaggio di successo
+            $stampaRecensione = array(
+                "idRecensione" => $recensione["idRecensione"],
+                "idUtente" => $recensione["idUtente"],
+                "idProdotto" => $recensione["idProdotto"],
+                "voto" => $recensione["voto"],
+                "testo" => $recensione["testo"]
+            );
+            http_response_code(200);
+            echo json_encode(array("message" => "Recensione aggiornata con successo." ." , recensione" => $stampaRecensione));
         } else {
             echo json_encode(array("message" => "Errore durante l'aggiornamento della recensione."));
+        }
         }
     } else {
         http_response_code(405);
