@@ -1,0 +1,12 @@
+@import "../global/colors.scss";
+
+
+nav {
+    background: $prussianBlue;
+
+
+    >* {
+        margin: 0;
+    }
+
+}

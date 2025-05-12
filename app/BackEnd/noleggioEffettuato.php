@@ -1,4 +1,15 @@
 <?php
+
+    /**
+	 * Cerca informazioni su un determinato noleggio fatto da un utente
+	 * 
+	 * metodo: POST
+	 * parametri:
+     *  - nome
+     *  - cognome
+     *  - idNoleggio
+	 */
+
     include("connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nome = htmlentities($_POST['nome']);
@@ -23,7 +34,7 @@
             echo json_encode(array("message" => "Nessun noleggio trovato."));
             exit;
         }
-                $result = $conn -> query($query);
+        $result = $conn -> query($query);
         if($row = $result -> fetch_assoc()){
             $id = htmlentities($row['id']);
             $data = htmlentities($row['data']);
@@ -51,6 +62,7 @@
         }
         $conn->close();
     } else {
+        http_response_code(405);
         echo json_encode(array("message" => "Richiesta non valida."));
     }
 ?>

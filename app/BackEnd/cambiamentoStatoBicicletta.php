@@ -1,5 +1,10 @@
 <?php
-include("connessioneXAMPP.php");
+/**
+ * Aggiorna lo stato delle biciclette (libero (1) / occupato (0))
+ * metodo: POST
+ */
+
+include("connessioneDB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     date_default_timezone_set('Europe/Rome'); // Imposta il fuso orario corretto

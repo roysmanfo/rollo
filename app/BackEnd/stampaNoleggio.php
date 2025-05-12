@@ -1,4 +1,11 @@
 <?php
+    /**
+     * Seleziona un noleggio specifico a partire dall'id
+     * metodo: POST
+     * parametri:
+     *  - idNoleggio: id del noleggio di cui vogliamo le informazioni
+     */
+
     include("connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nome = htmlentities($_POST['nome']);
@@ -41,6 +48,7 @@
         $query->close();
         $result->close(); 
     } else {
+        http_response_code(405);
         echo json_encode(array("message" => "Richiesta non valida."));
     }
 ?>
