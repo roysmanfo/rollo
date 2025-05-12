@@ -1,0 +1,101 @@
+body:has(.home-hero){
+    scroll-behavior: smooth;
+}
+
+.home-hero{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+    isolation: isolate;
+    position: relative;
+
+    .fade{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to bottom, transparent 90%, #000);
+        z-index: -1;
+    }
+
+    video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: .6;
+        transform: translate(-50%, -50%);
+        z-index: -2;
+        min-height: 100%;
+        min-width: 100%;
+    }
+    .presentation{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        
+        @keyframes appear {
+            to {opacity: 1; visibility: visible; transform: translateY(0);}
+        }
+
+        .slogan {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(5rem);
+            animation: appear 1s ease 1s forwards;
+            font-weight: 700;
+            font-size: 4.5rem;
+        }
+    }
+}
+
+.home-main {
+    min-height: 100vh;
+    width: 100%;
+    
+    .info{
+        background: #000;
+        min-height: 100vh;
+        color: #fff;
+        padding: 5rem;
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .counters {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 2rem;
+
+
+        .card {
+            color: #fff;
+            // background: #111;
+            border-bottom: solid #222 2px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 5rem 2rem;
+            
+
+            >*{
+                margin: 0;
+            }
+                
+            p{
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .home-app{
+        
+    }
+}
