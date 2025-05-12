@@ -1,12 +1,60 @@
-@import "../global/colors.scss";
+// @import "../global/colors.scss";
 
 
 nav {
-    background: $prussianBlue;
-
+    color: #fff;
+    padding: 2rem 5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
 
     >* {
         margin: 0;
+    }
+
+    .title{
+        font-size: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-weight: 600;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .navigation {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        font-weight: 700;
+        align-items: center;
+        cursor: pointer;
+
+        li{
+            padding-bottom: 5px;
+            position: relative;
+            &::before{
+                content: '';
+                height: 2px;
+                width: 0;
+                background-color: #fff;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: 100ms;
+            }
+            
+            
+            &:hover{
+                &::before{
+                    width: 100%;
+                }
+            }
+        }
     }
 
 }
