@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import "../style/components/navbar.scss"
 import "../style/pages/home.scss"
 
-import HeroVideo from "../media/videos/denis.mp4"
+import HeroVideo from "../media/videos/home-bg.mp4";
 import { useRef } from "react";
 import useIsVisible from "../hooks/visible";
 import { useCounter } from "../hooks/useCounter";
@@ -13,7 +13,9 @@ export default function Home(){
         <>  
             <Navbar />
             <header className="home-hero">
-                <video autoPlay muted loop src={HeroVideo} />
+                <video autoPlay muted loop>
+                    <source src={HeroVideo} type="video/mp4" />
+                </video>
                 <div className="presentation">
                     <h1 className="slogan">Ride Dis Dih</h1>
                 </div>
