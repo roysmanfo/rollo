@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 
 
 export default function Navbar(){
@@ -8,9 +9,9 @@ export default function Navbar(){
                 <p>Rollo</p>
             </div>
             <ul className="navigation">
-               <li>Chi siamo</li> 
-               <li>Sedi</li> 
-               <li>Denis</li> 
+                <Link to="/#">Chi siamo</Link>
+                <Link to="/#">Sedi</Link>
+                <Link to="/mobile">App mobile</Link>
             </ul>
         </nav>
     )

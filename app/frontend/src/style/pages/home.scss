@@ -1,5 +1,11 @@
 body:has(.home-hero){
     scroll-behavior: smooth;
+
+    nav {
+        color: #fff;
+        background: transparent;
+        backdrop-filter: initial; 
+    }
 }
 
 .home-hero{

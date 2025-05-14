@@ -1,8 +1,10 @@
-// @import "../global/colors.scss";
+@import "../global/colors.scss";
 
 
 nav {
-    color: #fff;
+    color: $primary;
+    background: #fff9;
+    backdrop-filter: blur(10px);
     padding: 2rem 5rem;
     position: fixed;
     width: 100%;
@@ -19,8 +21,8 @@ nav {
         display: flex;
         align-items: center;
         gap: 1rem;
-        font-weight: 600;
-
+        font-weight: 800;
+        
         p {
             margin: 0;
         }
@@ -34,14 +36,17 @@ nav {
         align-items: center;
         cursor: pointer;
 
-        li{
+        a{
+            text-decoration: none;
+            color: inherit;
             padding-bottom: 5px;
             position: relative;
             &::before{
                 content: '';
                 height: 2px;
                 width: 0;
-                background-color: #fff;
+                // background-color: #fff;
+                background-color: $accent1;
                 position: absolute;
                 bottom: 0;
                 left: 0;
