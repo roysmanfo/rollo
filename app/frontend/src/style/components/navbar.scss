@@ -1,93 +1,89 @@
-@import "../global/colors.scss";
-
+@import '../global/colors.scss';
 
 nav {
-    color: $primary;
-    background: #fff9;
-    backdrop-filter: blur(10px);
-    padding: 2rem 5rem;
-    position: fixed;
-    width: 100%;
-    z-index: 99;
+  color: $primary;
+  background: #fff9;
+  backdrop-filter: blur(10px);
+  padding: 2rem 5rem;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+
+  > * {
+    margin: 0;
+  }
+
+  .title {
+    font-size: 2.5rem;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 800;
 
-    >* {
-        margin: 0;
+    p {
+      margin: 0;
+    }
+  }
+
+  .navigation {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-weight: 700;
+    padding: 0;
+    align-items: center;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      padding-bottom: 5px;
+      position: relative;
+      &::before {
+        content: '';
+        height: 2px;
+        width: 0;
+        // background-color: #fff;
+        background-color: $accent1;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 100ms;
+      }
+
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .loginBtns {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      height: 100%;
     }
 
-    .title{
-        font-size: 2.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        font-weight: 800;
-        
-        p {
-            margin: 0;
-        }
+    button {
+      border: none;
+      background: $primary;
+      color: #fff;
+      font-family: inherit;
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 100ms;
+
+      &:hover {
+        background: $accent1;
+      }
     }
-
-    .navigation {
-        list-style: none;
-        display: flex;
-        gap: 1rem;
-        font-weight: 700;
-        align-items: center;
-        cursor: pointer;
-
-        a{
-            text-decoration: none;
-            color: inherit;
-            padding-bottom: 5px;
-            position: relative;
-            &::before{
-                content: '';
-                height: 2px;
-                width: 0;
-                // background-color: #fff;
-                background-color: $accent1;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                transition: 100ms;
-            }
-            
-            
-            &:hover{
-                &::before{
-                    width: 100%;
-                }
-            }
-        }
-    }
-
-    .loginBtns{
-        display: flex;
-        gap: 1rem;
-
-        a {
-            height: 100%;
-        }
-
-        button{
-            border: none;
-            background: $primary;
-            color: #fff;
-            font-family: inherit;
-            padding: 1rem;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 100ms;
-
-            &:hover{
-                background: $accent1;
-            }
-
-        }
-
-    }
-
+  }
 }

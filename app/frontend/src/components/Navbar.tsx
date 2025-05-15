@@ -4,6 +4,7 @@ import type { User } from '../api/user';
 
 export default function Navbar() {
   const [user, setUser] = useState<User | null>(null);
+  // TODO: implement access control
 
   return (
     <nav>
