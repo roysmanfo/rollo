@@ -17,7 +17,7 @@ export default function Home(){
                     <source src={HeroVideo} type="video/mp4" />
                 </video>
                 <div className="presentation">
-                    <h1 className="slogan">Ride Dis Dih</h1>
+                    <h1 className="slogan">Ride Your Way</h1>
                 </div>
                 <div className="fade"></div>
             </header>
