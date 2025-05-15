@@ -62,4 +62,32 @@ nav {
         }
     }
 
+    .loginBtns{
+        display: flex;
+        gap: 1rem;
+
+        a {
+            height: 100%;
+        }
+
+        button{
+            border: none;
+            background: $primary;
+            color: #fff;
+            font-family: inherit;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 100ms;
+
+            &:hover{
+                background: $accent1;
+            }
+
+        }
+
+    }
+
 }
