@@ -1,4 +1,4 @@
-import '../../style/pages/login.scss';
+import '../style/pages/auth.scss';
 import { useState } from 'react';
 
 type Role = 'login' | 'sign up';

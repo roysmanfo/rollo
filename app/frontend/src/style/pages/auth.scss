@@ -1,3 +1,4 @@
+@import "../../style/global/colors.scss";
 $padding: 5rem;
 
 .auth-main {
@@ -8,17 +9,19 @@ $padding: 5rem;
   height: 100vh;
 
   .auth-section {
+    $radius: 30px;
+
     display: flex;
     background: #fff;
     gap: 2rem;
     align-items: center;
-    border-radius: 30px;
+    border-radius: $radius;
     box-shadow: 0 0 50px #999;
     transition: 1s;
 
     h2 {
       padding: $padding;
-      border-radius: inherit;
+      border-radius: calc($radius - 1px);
       display: grid;
       place-items: center;
       height: 100%;
@@ -26,7 +29,7 @@ $padding: 5rem;
       font-weight: 900;
       margin: 0;
       text-transform: uppercase;
-      background: #000;
+      background: $primary;
       color: #fff;
     }
 
@@ -60,6 +63,7 @@ $padding: 5rem;
           visibility: hidden;
         }
       }
+
       .switch {
         margin: 0;
 
@@ -72,8 +76,9 @@ $padding: 5rem;
           cursor: pointer;
         }
       }
+
       .submit {
-        background-color: #000;
+        background-color: $primary;
         font-family: inherit;
         color: #fff;
         font-size: 1.1rem;
@@ -82,6 +87,11 @@ $padding: 5rem;
         border-radius: 5px;
         cursor: pointer;
         margin-top: auto;
+        transition: 100ms;
+
+        &:hover {
+          background: $accent1;
+        }
       }
     }
   }
