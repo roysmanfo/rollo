@@ -9,7 +9,7 @@
      *  - idNoleggio: id del neleggio in questione 
      */
 
-    include("connessioneDB.php");
+    include("./db/connessioneDB.php");
     $data = json_decode(file_get_contents("php://input"),true);
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $MIN_TOKEN = 15; // TODO: Aaggiornare questo numero 

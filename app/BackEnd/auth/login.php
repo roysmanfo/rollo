@@ -1,5 +1,5 @@
 <?php
-    include("connessioneDB.php");
+    include("../db/connessioneDB.php");
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         if(isset($_POST["email"], $_POST["password"])){
             $email = htmlentities($_POST["email"]);
@@ -39,6 +39,6 @@
             echo json_encode(array("errore" => "Parametri mancanti."));
         }
         $stmt -> close();
-        $conn -> close();
     }
+    $conn -> close();
 ?>

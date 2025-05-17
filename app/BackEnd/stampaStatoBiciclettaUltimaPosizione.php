@@ -4,7 +4,7 @@
      * metodo: POST
      */
 
-    include("connessioneDB.php");
+    include("./db/connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query = "SELECT B.id, B.modello, B.stato, I.latitudine, I.longitudine, S.nome AS sede
                   FROM biciclette B

@@ -1,12 +1,22 @@
 <?php
-    include("connessioneDB.php");
-    if($_SERVER["REQUEST_METHOD"] == "POST"){    
-        $sedeAppartenenza = htmlentities($_POST['sedeAppartenenza']);
+
+	/**
+     * !! NON FUNZIONA (riga 22 - if invece di while)
+     * 
+	 * Restituisce biciclette che necessitano revisione entro una data (con informazioni limitate)
+	 * 
+	 * metodo: GET
+	 * parametri:
+     *  - dataRevisione: la data massima
+	 */
+    include("../db/connessioneDB.php");
+    if($_SERVER["REQUEST_METHOD"] == "GET"){    
+        $dataRevisione = htmlentities($_POST['dataRevisione']);
         $query = $conn -> prepare("SELECT B.id, I.data_Revisione
                                    FROM biciclette B
                                    JOIN iot I ON B.iot = I.id
                                    WHERE I.data_Revisione <= ?;");
-        $query -> bind_param("s", $sedeAppartenenza);
+        $query -> bind_param("s", $dataRevisione);
         $query -> execute();
         $result = $query -> get_result();
         if($row = $result -> fetch_assoc()){

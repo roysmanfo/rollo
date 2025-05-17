@@ -6,7 +6,7 @@
  */
 
 header("Content-Type: application/json");
-include("connessioneDB.php");
+include("./db/connessioneDB.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Decodifica eventuali dati JSON inviati (es. per ricevere ID utente)

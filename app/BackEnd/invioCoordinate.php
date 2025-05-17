@@ -7,7 +7,7 @@
 	 */
 
 	//Utilizzo header per prendere la longitudine e la latitudine dallo script Arduino ogni tot. secondi
-	include("connessioneDB.php");
+	include("./db/connessioneDB.php");
 	$data = json_decode(file_get_contents("php://input"),true);
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		if(isset($data["id_dispositivo"], $data["latitudine"], $data["longitudine"])){

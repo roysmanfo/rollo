@@ -18,7 +18,7 @@
         $voto = htmlentities($_POST['voto']);
         $testo = htmlentities($_POST['testo']);
         // Esempio di codice per aggiornare la recensione nel database
-        include("connessioneDB.php");
+        include("./db/connessioneDB.php");
         $query = $conn->prepare("UPDATE recensioni SET idUtente = ?, idProdotto = ?, voto = ?, testo = ? WHERE idRecensione = ?");
         $query->bind_param("iiisi", $idUtente, $idProdotto, $voto, $testo, $idRecensione);
         $query->execute();

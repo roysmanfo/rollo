@@ -1,25 +1,41 @@
 <?php
-    /**
-     * Seleziona un noleggio specifico a partire dall'id
-     * metodo: POST
-     * parametri:
-     *  - idNoleggio: id del noleggio di cui vogliamo le informazioni
-     */
 
-    include("connessioneDB.php");
+    /**
+	 * Cerca informazioni su un determinato noleggio fatto da un utente
+	 * 
+	 * metodo: POST
+	 * parametri:
+     *  - nome
+     *  - cognome
+     *  - idNoleggio
+	 */
+
+    include("../db/connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nome = htmlentities($_POST['nome']);
         $cognome = htmlentities($_POST['cognome']);
-        $query = $conn -> prepare("SELECT N.id, N.data, N.ora_inizio, N.ora_fine, N.prezzo, 
-                                        U.nome, U.cognome, B.modello
-                                        FROM noleggi N
-                                        JOIN utenti U ON N.utente = U.id
-                                        JOIN biciclette B ON N.bicicletta = B.id
-                                        WHERE nome = ? AND cognome = ?;");
-        $query -> bind_param("ss", $nome, $cognome);
-        $query -> execute();
-        $result = $query -> get_result();
-        if($row = result -> fetch_assoc()){
+        $idNoleggio = htmlentities($_POST['idNoleggio']);
+        $stmt = $conn -> prepare("SELECT N.id, N.data, N.ora_inizio, N.ora_fine, N.prezzo, 
+                  U.nome, U.cognome, B.modello
+                  FROM noleggi N
+                  JOIN utenti U ON N.utente = U.id
+                  JOIN biciclette B ON N.bicicletta = B.id
+                  WHERE nome = ? AND cognome = ?;");
+        $stmt -> bind_param("ss", $nome, $cognome);
+        $stmt -> execute();
+        $result = $stmt -> get_result();
+        if($row = $result -> fetch_assoc()){
+            $id = htmlentities($row['id']);
+            $data = htmlentities($row['data']); 
+            $ora_inizio = htmlentities($row['ora_inizio']);
+            $ora_fine = htmlentities($row['ora_fine']);
+            $prezzo = htmlentities($row['prezzo']);
+        } else {
+            echo json_encode(array("message" => "Nessun noleggio trovato."));
+            exit;
+        }
+        $result = $conn -> query($query);
+        if($row = $result -> fetch_assoc()){
             $id = htmlentities($row['id']);
             $data = htmlentities($row['data']);
             $ora_inizio = htmlentities($row['ora_inizio']);
@@ -45,8 +61,6 @@
             exit;
         }
         $conn->close();
-        $query->close();
-        $result->close(); 
     } else {
         http_response_code(405);
         echo json_encode(array("message" => "Richiesta non valida."));
