@@ -14,7 +14,7 @@ export default function Navbar() {
       </div>
       <ul className="navigation">
         <Link to="/#">Chi siamo</Link>
-        <Link to="/#">Sedi</Link>
+        <Link to="/sedi">Sedi</Link>
         <Link to="/mobile">App mobile</Link>
       </ul>
       <div className="loginBtns">

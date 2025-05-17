@@ -1,0 +1,19 @@
+.main-sedi {
+    padding: 115px 5rem 5rem 5rem;
+
+    section {
+        display: flex;
+
+        .card {
+            box-shadow: 0 0 10px #ddd;
+            padding: 2rem;
+            border-radius: 10px;
+
+            h3 {
+                margin: 0;
+            }
+
+        }
+    }
+
+}
