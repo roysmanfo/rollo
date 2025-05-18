@@ -3,7 +3,7 @@
  * Aggiorna lo stato delle biciclette (libero (1) / occupato (0))
  * metodo: POST
  */
-
+header("Content-Type: application/json");
 include("../db/connessioneDB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,12 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Seleziona biciclette con stato ancora occupato (0) e noleggio scaduto
     $query = "
-        SELECT Biciclette.id_Bicicletta
-        FROM Biciclette
-        JOIN Noleggi ON Biciclette.id_Bicicletta = Noleggi.bicicletta
-        WHERE Biciclette.stato = 0
-        AND Noleggi.ora_Fine IS NOT NULL
-        AND Noleggi.ora_Fine < ?
+        SELECT B.id
+        FROM biciclette B
+        JOIN noleggi N ON B.id = N.bicicletta
+        WHERE B.stato = 0
+        AND N.ora_fine IS NOT NULL
+        AND N.ora_fine < ?
     ";
 
     $stmt = $conn->prepare($query);
@@ -29,23 +29,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Per ogni bicicletta scaduta, aggiornare lo stato a 1 (disponibile)
     if ($result->num_rows > 0) {
-        $updateStmt = $conn->prepare("UPDATE Biciclette SET stato = 1 WHERE id_Bicicletta = ?");
+        $updateStmt = $conn->prepare("UPDATE biciclette SET stato = 1 WHERE id = ?");
         
         while ($row = $result->fetch_assoc()) {
-            $id_Bicicletta = $row['id_Bicicletta'];
-            $updateStmt->bind_param("i", $id_Bicicletta);
+            $id = $row['id'];
+            $updateStmt->bind_param("i", $id);
             $updateStmt->execute();
-            $aggiornate[] = $id_Bicicletta;
+            array_push($aggiornate, $id);
         }
 
         $updateStmt->close();
         echo json_encode([
-            "messaggio" => "Stato aggiornato per le biciclette scadute.",
+            "message" => "Stato aggiornato per le biciclette scadute.",
             "biciclette_aggiornate" => $aggiornate
         ]);
     } else {
         echo json_encode([
-            "messaggio" => "Nessuna bicicletta da aggiornare al momento."
+            "message" => "Nessuna bicicletta da aggiornare al momento."
         ]);
     }
 
@@ -53,6 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 } else {
     http_response_code(405); // Metodo non consentito
-    echo json_encode(["errore" => "Richiesta non valida."]);
+    echo json_encode(["error" => "Richiesta non valida."]);
 }
 ?>

@@ -1,4 +1,4 @@
 <?php
-$conn = new mysqli("localhost", "root", "password", "Rollo")
+$conn = new mysqli("localhost", "root", "", "rollo")
 or die("Connessione non avvenuta" . $conn->connect_error);
 ?>

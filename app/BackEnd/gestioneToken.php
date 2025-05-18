@@ -27,7 +27,7 @@
                 echo json_encode(array("message" => "Noleggio trovato.", "prezzo" => $prezzo));
                 exit;
             } else {
-                echo json_encode(array("errore" => "Nessun noleggio trovato."));
+                echo json_encode(array("error" => "Nessun noleggio trovato."));
                 exit;
             }
             //Scalo il numero di token per ogni km percorso
@@ -53,13 +53,13 @@
             
             //Aggiornamento token nel database se il tempo del noleggio è scaduto
         } else {
-            echo json_encode(array("errore" => "Numero di token insufficiente."));
+            echo json_encode(array("error" => "Numero di token insufficiente."));
             exit;
         }
         $conn->close();
         $query->close();
         $result->close();
     } else {
-        echo json_encode(array("errore" => "Richiesta non valida."));
+        echo json_encode(array("error" => "Richiesta non valida."));
     }
 ?>

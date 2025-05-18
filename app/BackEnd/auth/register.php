@@ -1,26 +1,28 @@
 <?php
+    header("Content-Type: application/json");
     include("../db/connessioneDB.php");
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         if(isset($_POST["nome"], $_POST["cognome"], $_POST["email"], $_POST["password"])){
             $nome = htmlentities($_POST["nome"]);
             $cognome = htmlentities($_POST["cognome"]);
             $email = htmlentities($_POST["email"]);
-            $salt = bin2hex(random_bytes(16)); // Genera un sale casuale
-            $password = hash("sha256", $salt . htmlentities($_POST["password"])); // Hash della password con il sale
+            // $salt = bin2hex(random_bytes(16)); // Genera un sale casuale
+            // ? non viene salvato il salt, quindi non lo possiamo usare senza modificare il database
+            $password = password_hash($_POST["password"], PASSWORD_BCRYPT); // Hash della password
             $emailGiaPresente = $conn -> prepare("SELECT * FROM utenti WHERE email = ?;");
             $emailGiaPresente -> bind_param("s", $email);
             $emailGiaPresente -> execute();
             $result = $emailGiaPresente -> get_result();
             if($result -> num_rows > 0){
                 http_response_code(409);
-                echo json_encode(array("errore" => "Email già registrata."));
+                echo json_encode(array("error" => "Email già registrata."));
                 exit;
             }
-            $emailGiaPresente = mysqli_query($conn, "SELECT * FROM Utente WHERE email='$email'");
+            $emailGiaPresente = mysqli_query($conn, "SELECT * FROM utenti WHERE email='$email'");
             $count = mysqli_num_rows($emailGiaPresente);
             if($count > 0){
                 http_response_code(409);
-                echo json_encode(array("errore" => "Email già registrata."));
+                echo json_encode(array("error" => "Email già registrata."));
                 exit;
             }
             //Controllo se l'email è già registrata
@@ -59,37 +61,36 @@
                 //preparazione della query
                 $stmt = $conn -> prepare("INSERT INTO utenti (nome, cognome, email, password) VALUES (?, ?, ?, ?);");
                 $stmt -> bind_param("ssss", $nome, $cognome, $email, $password);
-                
-                if($stmt -> execute()){
+                if($stmt->execute()){
                     // prendi l'id dell'utente appena registrato per restituirlo
-                    $stmt = $conn -> prepare("SELECT id, num_token FROM utenti WHERE email=?;");
+                    $stmt = $conn -> prepare("SELECT id, num_token, ruolo FROM utenti WHERE email=?;");
                     $stmt -> bind_param("s",$email);
                     $stmt->execute();
-                    $res->$stmt->get_result();
-                    $usr = $res->fetch_assoc()
+                    $res = $stmt->get_result();
+                    $usr = $res->fetch_assoc();
 
                     $user = array(
                         "id"=>$usr["id"],
-                        "name"=>$name,
-                        "surname"=>$surname,
+                        "nome"=>$nome,
+                        "cognome"=>$cognome,
                         "email"=>$email,
-                        "nToken"=>$usr["num_token"]
+                        "ruolo"=>$row["ruolo"],
+                        "num_token"=>$usr["num_token"]
                     );
-                    
-                    echo json_encode(array("messaggio" => "Registrazione avvenuta con successo.", "user"=> $user));
+                    echo json_encode(array("message" => "Registrazione avvenuta con successo.", "user"=> $user));
                 }else{
                     http_response_code(500);
-                    echo json_encode(array("errore" => "Errore durante la registrazione."));
+                    echo json_encode(array("error" => "Errore durante la registrazione."));
                 }
                 $stmt -> close();
             }else{
                 http_response_code(400);
-                echo json_encode(array("errore" => "OTP mancante."));
+                echo json_encode(array("error" => "OTP mancante."));
             }
             $result -> close();
         }else{
             http_response_code(405);
-            echo json_encode(array("errore" => "Metodo non consentito."));
+            echo json_encode(array("error" => "Metodo non consentito."));
         }
     }
 

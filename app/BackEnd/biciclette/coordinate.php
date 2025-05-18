@@ -23,19 +23,19 @@
 			$ris = $stmt -> execute();
 			
 			if($ris && $stmt -> affected_rows>0){
-				echo json_encode(array("messaggio" => "posizione aggiornata"));
+				echo json_encode(array("message" => "posizione aggiornata"));
 			}else{
 				// nessuno status change, quindi non lo segnamo come errore 
-				echo json_encode(["messaggio" => "Dispositivo non trovato o nessuna modifica apportata alla posizione"]);
+				echo json_encode(["message" => "Dispositivo non trovato o nessuna modifica apportata alla posizione"]);
 			}
 		}else{
 			http_response_code(400);
-			echo json_encode(["errore" => "Parametri mancanti."]);
+			echo json_encode(["error" => "Parametri mancanti."]);
 		}
 		$stmt -> close();
 		$conn -> close();
 	}else{
 		http_response_code(405);
-		echo json_encode(["errore" => "Metodo non consentito."]);
+		echo json_encode(["error" => "Metodo non consentito."]);
 	}
 ?>

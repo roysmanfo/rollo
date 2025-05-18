@@ -29,22 +29,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode([
                 "id_bicicletta" => $id_Bicicletta,
                 "stato" => 0,
-                "messaggio" => "Bicicletta prenotata con successo."
+                "message" => "Bicicletta prenotata con successo."
             ]);
         } else {
             http_response_code(500);
-            echo json_encode(["errore" => "Errore durante l'aggiornamento dello stato."]);
+            echo json_encode(["error" => "Errore durante l'aggiornamento dello stato."]);
         }
 
         $update->close();
     } else {
         http_response_code(404);
-        echo json_encode(["errore" => "Nessuna bicicletta disponibile al momento."]);
+        echo json_encode(["error" => "Nessuna bicicletta disponibile al momento."]);
     }
 
     $conn->close();
 } else {
     http_response_code(405); // Metodo non consentito
-    echo json_encode(["errore" => "Metodo non consentito. Usa POST."]);
+    echo json_encode(["error" => "Metodo non consentito. Usa POST."]);
 }
 ?>
