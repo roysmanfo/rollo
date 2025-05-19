@@ -5,21 +5,26 @@
 	 * 
 	 * metodo: POST
 	 * parametri:
-     *  - user: id dell'utente che avvia noleggio
      *  - bici: id della bicicletta noleggiata
 	 */
 
     header("Content-Type: application/json");
     include("../db/connessioneDB.php");
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (!isset($_POST["utente"], $_POST["bicicletta"])){
+        if (!isset($_POST["bicicletta"])){
             http_response_code(400);
             echo json_encode(array("error" => "Parametri mancanti."));
             $conn->close();
             exit;
         }
+        session_start():
+        if (!isset($_SESSION)){
+            echo json_encode(["error"=>"Nessuna sessione trovata."]);
+            exit;
+        }
 
-        $utente = htmlentities($_POST['utente']);
+
+        $utente = htmlentities($_SESSION['utente']);
         $bici_id = htmlentities($_POST['bicicletta']);
         
         // ? controlla che la bici non sia gia occupata
