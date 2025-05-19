@@ -1,14 +1,19 @@
 <?php
     /**
      * Restituisce lo storico noleggi per utente.
-     * metodo: POST
+     * metodo: GET
      * parametri:
-     *  - idNoleggio: id del noleggio di cui vogliamo le informazioni
+     *  - id: id del noleggio di cui vogliamo le informazioni
      */
     header("Content-Type: application/json");
     include("../db/connessioneDB.php");
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $uid = htmlentities($_POST['id']);
+    if($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+        if (!isset($_GET['id'])){
+            echo json_encode(["error"=>"ID utente mancante."]);
+            exit;
+        }
+        $uid = htmlentities($_GET['id']);
 
         // sicurezza - controlla che l'id e il ruolo dell'utente
         session_start();
@@ -16,7 +21,7 @@
             echo json_encode(["error"=>"Nessuna sessione trovata."]);
             exit;
 
-        } else if ($_SESSION["id"] !== $uid){
+        } else if (isset($_SESSION["id"]) && $_SESSION["id"] !== $uid){
             // solo gli admin possono visualizzare le informazioni di altri utenti
             if (empty($_SESSION["ruolo"]) || $_SESSION["ruolo"] !== "admin"){
                 echo var_dump($_SESSION);
@@ -25,12 +30,12 @@
             }
         }
 
-        $query = $conn -> prepare("SELECT N.id AS noleggio_id, N.data, N.ora_inizio, N.ora_fine, N.prezzo, 
+        $query = $conn -> prepare("SELECT N.id AS noleggio_id, N.data, N.ora_inizio, N.ora_fine, N.prezzo, N.distanza_percorsa,
                                         B.id AS bicicletta_id, B.modello
                                         FROM noleggi N
                                         JOIN utenti U ON N.utente = U.id
                                         JOIN biciclette B ON N.bicicletta = B.id
-                                        WHERE U.id = ?;");
+                                        WHERE U.id = ? AND N.ora_fine IS NOT NULL;");
         $query -> bind_param("s", $uid);
         $query -> execute();
         $result = $query -> get_result();
@@ -41,6 +46,7 @@
                 $data = htmlentities($row['data']);
                 $ora_inizio = htmlentities($row['ora_inizio']);
                 $ora_fine = htmlentities($row['ora_fine']);
+                $distanza_percorsa = htmlentities($row['distanza_percorsa']);
                 $prezzo = htmlentities($row['prezzo']);
                 $modello = htmlentities($row['modello']);
                 $bicicletta = htmlentities($row['bicicletta_id']);
@@ -48,6 +54,7 @@
                     "id" => $id,
                     "data" => $data,
                     "ora_inizio" => $ora_inizio,
+                    "distanza_percorsa" => $distanza_percorsa,
                     "ora_fine" => $ora_fine,
                     "prezzo" => $prezzo,
                     "bicicletta" => $bicicletta,
