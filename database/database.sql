@@ -111,17 +111,19 @@ WHERE I.data_Revisione <= '2025-06-01';
 
 
 -- Insert into per dati di testing
+-- password: password123
+-- hash: BCRYPT_BLOWFISH (cost = 10)
 INSERT INTO utenti VALUES
-(1, 'Marco', 'Rossi', 'marco.rossi@email.com', 'password123', 100, 'utente', '2025-01-10'),
-(2, 'Luca', 'Bianchi', 'luca.bianchi@email.com', 'lucaPwd!', 120, 'utente', '2025-01-15'),
-(3, 'Anna', 'Verdi', 'anna.verdi@email.com', 'annaPwd!', 90, 'utente', '2025-01-20'),
-(4, 'Giulia', 'Neri', 'giulia.neri@email.com', 'giuliaPwd!', 150, 'admin', '2025-01-05'),
-(5, 'Davide', 'Ferrari', 'davide.ferrari@email.com', 'daviPwd!', 80, 'utente', '2025-02-01'),
-(6, 'Elisa', 'Moretti', 'elisa.moretti@email.com', 'elisPwd!', 200, 'utente', '2025-02-05'),
-(7, 'Francesco', 'Russo', 'francesco.russo@email.com', 'frank123', 110, 'utente', '2025-02-10'),
-(8, 'Sara', 'Gallo', 'sara.gallo@email.com', 'saraPwd!', 70, 'utente', '2025-02-15'),
-(9, 'Matteo', 'Greco', 'matteo.greco@email.com', 'matteoPwd!', 95, 'utente', '2025-02-20'),
-(10, 'Alessia', 'Conti', 'alessia.conti@email.com', 'alessiaPwd!', 130, 'utente', '2025-03-01');
+(1, 'Marco', 'Rossi', 'marco.rossi@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 100, 'utente', '2025-01-10'),
+(2, 'Luca', 'Bianchi', 'luca.bianchi@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 120, 'utente', '2025-01-15'),
+(3, 'Anna', 'Verdi', 'anna.verdi@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 90, 'utente', '2025-01-20'),
+(4, 'Giulia', 'Neri', 'giulia.neri@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 150, 'admin', '2025-01-05'),
+(5, 'Davide', 'Ferrari', 'davide.ferrari@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 80, 'utente', '2025-02-01'),
+(6, 'Elisa', 'Moretti', 'elisa.moretti@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 200, 'utente', '2025-02-05'),
+(7, 'Francesco', 'Russo', 'francesco.russo@email.com', '', 110, 'utente', '2025-02-10'),
+(8, 'Sara', 'Gallo', 'sara.gallo@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 70, 'utente', '2025-02-15'),
+(9, 'Matteo', 'Greco', 'matteo.greco@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 95, 'utente', '2025-02-20'),
+(10, 'Alessia', 'Conti', 'alessia.conti@email.com', '$2a$10$AIQ93650TqwM7QQXy4V7weo.g7YbGcEstYxitzAQ9y4YpDUmeeRIW', 130, 'utente', '2025-03-01');
 INSERT INTO sedi VALUES
 (1, 'Centro', 'Padova', 35100, 'Via Roma', 10, 5, '0491234567'),
 (2, 'Stazione', 'Padova', 35131, 'Viale Codalunga', 25, 7, '0497654321'),
