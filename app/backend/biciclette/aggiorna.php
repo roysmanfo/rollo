@@ -8,20 +8,18 @@ include("../db/connessioneDB.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     date_default_timezone_set('Europe/Rome'); // Imposta il fuso orario corretto
-    $oraAttuale = date("H:i:s"); // Ottieni ora attuale nel formato HH:MM:SS
+    // $oraAttuale = date("H:i:s"); // Ottieni ora attuale nel formato HH:MM:SS
 
     // Seleziona biciclette con stato ancora occupato (0) e noleggio scaduto
     $query = "
         SELECT B.id
         FROM biciclette B
         JOIN noleggi N ON B.id = N.bicicletta
-        WHERE B.stato = 0
-        AND N.ora_fine IS NOT NULL
-        AND N.ora_fine < ?
+        WHERE N.ora_fine IS NULL;
     ";
 
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $oraAttuale);
+    // $stmt->bind_param("s", $oraAttuale);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -29,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Per ogni bicicletta scaduta, aggiornare lo stato a 1 (disponibile)
     if ($result->num_rows > 0) {
-        $updateStmt = $conn->prepare("UPDATE biciclette SET stato = 1 WHERE id = ?");
+        $updateStmt = $conn->prepare("UPDATE biciclette SET stato = 0 WHERE id = ?");
         
         while ($row = $result->fetch_assoc()) {
             $id = $row['id'];
