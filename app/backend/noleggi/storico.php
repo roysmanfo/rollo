@@ -24,7 +24,6 @@
         } else if (isset($_SESSION["id"]) && $_SESSION["id"] !== $uid){
             // solo gli admin possono visualizzare le informazioni di altri utenti
             if (empty($_SESSION["ruolo"]) || $_SESSION["ruolo"] !== "admin"){
-                echo var_dump($_SESSION);
                 echo json_encode(["error"=>"Non hai i necessari permessi per controllare lo storico di questo utente."]);
                 exit;
             }
