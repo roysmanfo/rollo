@@ -25,20 +25,20 @@
         $result = $query->get_result();
         while($recensione = $result->fetch_assoc()){
         // TODO: fix query
-        if ($query -> update($idRecensione, $idUtente, $idProdotto, $voto, $testo)) {
-            // Se l'aggiornamento è andato a buon fine, restituisci un messaggio di successo
-            $stampaRecensione = array(
-                "idRecensione" => $recensione["idRecensione"],
-                "idUtente" => $recensione["idUtente"],
-                "idProdotto" => $recensione["idProdotto"],
-                "voto" => $recensione["voto"],
-                "testo" => $recensione["testo"]
-            );
-            http_response_code(200);
-            echo json_encode(["message" => "Recensione aggiornata con successo.", "recensione" => $stampaRecensione]);
-        } else {
-            echo json_encode(array("message" => "Errore durante l'aggiornamento della recensione."));
-        }
+        // if ($query -> update($idRecensione, $idUtente, $idProdotto, $voto, $testo)) {
+        //     // Se l'aggiornamento è andato a buon fine, restituisci un messaggio di successo
+        //     $stampaRecensione = array(
+        //         "idRecensione" => $recensione["idRecensione"],
+        //         "idUtente" => $recensione["idUtente"],
+        //         "idProdotto" => $recensione["idProdotto"],
+        //         "voto" => $recensione["voto"],
+        //         "testo" => $recensione["testo"]
+        //     );
+        //     http_response_code(200);
+        //     echo json_encode(["message" => "Recensione aggiornata con successo.", "recensione" => $stampaRecensione]);
+        // } else {
+        //     echo json_encode(array("message" => "Errore durante l'aggiornamento della recensione."));
+        // }
         }
     } else {
         http_response_code(405);
