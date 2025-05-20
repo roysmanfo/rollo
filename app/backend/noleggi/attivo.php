@@ -18,8 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $utente = htmlentities($_SESSION['id']);
     // ! gli admin possono fetchare i dati degli altri utenti
-    if (isset($_GET['id']) && $_SESSION["ruolo"] == "admin") {
-        $utente = $_GET["id"];
+    if (isset($_GET['id']) && $_GET['id'] !== $utente) {
+        if ($_SESSION["ruolo"] === "admin") {
+            $utente = $_GET["id"];
+        } else {
+            http_response_code(401);
+            echo json_encode(array("error" => "Non hai i necessari permessi per controllare le informazioni di questo utente"));
+            $conn->close();
+            exit;
+        }
     }
 
 
@@ -31,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt->execute();
     $noleggi = $stmt->get_result();
     if ($noleggi->num_rows == 0) {
-        http_response_code(409);
         echo json_encode(array("error" => "Nessun noleggio attivo trovato per questo utente"));
         $conn->close();
         $stmt->close();
