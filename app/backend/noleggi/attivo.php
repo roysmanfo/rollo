@@ -17,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     $utente = htmlentities($_SESSION['id']);
+    // ! gli admin possono fetchare i dati degli altri utenti
+    if (isset($_GET['id']) && $_SESSION["ruolo"] == "admin") {
+        $utente = $_GET["id"];
+    }
+
 
     // ? controlla che il noleggio in questione sia attivo
     // ? e che sia effettivamente dell'utente che effettua la richiesta
