@@ -61,27 +61,57 @@ export default function Sedi() {
     },
   ];
 
+  const grouped = SEDI.reduce<Record<string, Sede[]>>((acc, sede) => {
+    if (!acc[sede.comune]) acc[sede.comune] = [];
+    acc[sede.comune].push(sede);
+    return acc;
+  }, {});
+
+  const comuni = Object.keys(grouped).sort();
+  comuni.forEach((comune) => grouped[comune].sort((a, b) => a.nome.localeCompare(b.nome)));
+
   return (
     <>
       <Navbar />
       <main className="main-sedi">
-        <h1>Sedi</h1>
         <section>
-          <Card />
+          {comuni.map((comune) => (
+            <Comune key={comune} comune={comune} sedi={grouped[comune]} />
+          ))}
         </section>
       </main>
     </>
   );
 }
 
-function Card() {
+function Comune({ comune, sedi }: { comune: string; sedi: Sede[] }) {
+  return (
+    <div className="comune-group">
+      <h2 className="comune-title">{comune}</h2>
+      <div className="sedi-list">
+        {sedi.map((s) => (
+          <Card key={s.telefono} sede={s} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Card({ sede }: { sede: Sede }) {
   return (
     <div className="card">
-      <h3>Denis</h3>
+      <h3>{sede.nome}</h3>
       <ul>
-        <li>via popa denis 123</li>
-        <li>124 biciclette gestite</li>
-        <li>36754725</li>
+        <li>
+          <i className="bi bi-geo-fill"></i> {sede.via} {sede.civico}
+        </li>
+        <li>
+          <i className="bi bi-bicycle"></i>
+          {sede.biciclette} biciclette
+        </li>
+        <li>
+          <i className="bi bi-telephone-fill"></i>+39 {sede.telefono}
+        </li>
       </ul>
     </div>
   );
