@@ -1,5 +1,5 @@
 <?php
-    function sendOTP($email, $otp) {
-        return;
-    }
-?>
+function sendOTP($email, $otp)
+{
+    return;
+}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Aggiorna lo stato delle biciclette (libero (1) / occupato (0))
  * metodo: POST
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Per ogni bicicletta scaduta, aggiornare lo stato a 1 (disponibile)
     if ($result->num_rows > 0) {
         $updateStmt = $conn->prepare("UPDATE biciclette SET stato = 0 WHERE id = ?");
-        
+
         while ($row = $result->fetch_assoc()) {
             $id = $row['id'];
             $updateStmt->bind_param("i", $id);
@@ -53,4 +54,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     http_response_code(405); // Metodo non consentito
     echo json_encode(["error" => "Richiesta non valida."]);
 }
-?>

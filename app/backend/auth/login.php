@@ -36,5 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array("error" => "Parametri mancanti."));
     }
     $stmt->close();
+} else {
+    http_response_code(405);
+    echo json_encode(array("message" => "Richiesta non valida."));
 }
 $conn->close();
