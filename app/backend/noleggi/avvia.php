@@ -24,7 +24,7 @@
         }
 
 
-        $utente = htmlentities($_SESSION['utente']);
+        $utente = htmlentities($_SESSION['id']);
         $bici_id = htmlentities($_POST['bicicletta']);
         
         // ? controlla che la bici non sia gia occupata
