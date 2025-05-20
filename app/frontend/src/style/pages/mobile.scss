@@ -1,92 +1,108 @@
-
-body:has(.mobile-main){
-    nav {
-        background-color: transparent;
-        backdrop-filter: initial;
-    }
+body:has(.mobile-main) {
+  nav {
+    background-color: transparent;
+    backdrop-filter: initial;
+  }
 }
 
-.mobile-main{
-    padding: 5rem;
-    min-height: 100vh;
-    width: 100%;
+.mobile-main {
+  padding: 5rem;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #333;
+  isolation: isolate;
+
+  .title {
+    font-size: 5rem;
+    margin: 1rem 0;
+    background-image: linear-gradient(to right, royalblue, #f55);
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+
+    @media screen and (max-width: 1030px) {
+      font-size: 3rem;
+    }
+  }
+
+  .paragraph {
+    text-align: center;
+    width: 40%;
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 1030px) {
+      font-size: 0.8rem;
+      width: 80%;
+    }
+  }
+
+  .downloads {
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #333;
-    isolation: isolate;
+    gap: 2rem;
 
-    .title{
-        font-size: 5rem;
-        margin: 1rem 0;
-        background-image: linear-gradient(to right, royalblue, #f55);
-        background-clip: text;
-        color: transparent;
-
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+      align-items: stretch;
     }
 
-    .paragraph{
-        text-align: center;
-        width: 40%;
-        margin-bottom: 3rem;
-        font-size: 1.2rem;
+    .dowload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: #000;
+      border: solid 1px #000;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      transition: 250ms;
+      cursor: pointer;
+
+      .icon {
+        font-size: 2rem;
+      }
+
+      .dl-text {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+
+      &:hover {
+        // transform: translateY(-5px);
+        // box-shadow: 0 0 20px #aaa;
+        background-color: #000;
+        color: #fff;
+      }
     }
-
-    .downloads{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-
-        .dowload-btn{
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: #000;
-            border: solid 1px #000;
-            font-weight: 700;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            transition: 100ms;
-            cursor: pointer;
-
-            .icon {
-                font-size: 2rem;
-            }
-            
-            .dl-text{
-                font-size: 1.5rem;
-                margin: 0;
-            }
-
-            &:hover{
-                transform: translateY(-5px);
-                box-shadow: 0 0 20px #aaa;
-            }
-        }
-    }
+  }
 }
 
-.mobile-footer{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 1rem 5rem;
-    font-size: .8rem;
+.mobile-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 5rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+
+  .socials {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-
-    p {
-        margin: 0;
-    }
-
-    .socials{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 1rem;
-    }
+    gap: 10px;
+    font-size: 1rem;
+  }
 }
