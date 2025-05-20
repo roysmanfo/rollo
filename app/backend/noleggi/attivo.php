@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     // ? controlla che il noleggio in questione sia attivo
     // ? e che sia effettivamente dell'utente che effettua la richiesta
-    $stmt = $conn->prepare("SELECT id, data, ora_inizio, bicicletta FROM noleggi
+    $stmt = $conn->prepare("SELECT id, data, ora_inizio, bicicletta, utente FROM noleggi
                                     WHERE utente = ? AND distanza_percorsa IS NULL;");
     $stmt->bind_param("i", $utente);
     $stmt->execute();
