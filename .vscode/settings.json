@@ -15,5 +15,6 @@
   },
   "[php]": {
     "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
