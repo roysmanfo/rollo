@@ -11,10 +11,8 @@
 
 
     function time_difference($date, $startTime, $endTime) {
-        // Create DateTime objects
         $startDateTime = new DateTime($date . ' ' . $startTime);
         $endDateTime = new DateTime($date . ' ' . $endTime);
-
         if ($endDateTime < $startDateTime) {
             $endDateTime->modify('+1 day');
         }
@@ -41,7 +39,6 @@
             exit;
         }
 
-
         $utente = htmlentities($_SESSION['id']);
         $noleggio_id = htmlentities($_POST['noleggio']);
         $distanza = htmlentities($_POST['distanza']);
@@ -61,6 +58,7 @@
             $stmt->close();
             exit;
         }
+        
         $noleggio = $noleggi->fetch_assoc();
         $stmt->close();
 
