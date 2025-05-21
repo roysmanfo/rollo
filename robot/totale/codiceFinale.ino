@@ -26,8 +26,8 @@ const char* ssid = "iPhone di Francesco";         // Sostituire con il nome dell
 const char* password = "012345678"; // Sostituire con la password della rete WiFi
 
 // === Server PHP ===
-const char* serverGetURL = "http://rollo.altervista.org/api/get_bike_data.php";
-const char* serverPostURL = "http://rollo.altervista.org/api/post_gps.php";
+const char* serverGetURL = "http://rollo.altervista.org/api/biciclette/disponibili.php";
+const char* serverPostURL = "http://rollo.altervista.org/api/invioCoordinate.php";
 
 // === Oggetti ===
 LiquidCrystal lcd(LCD_RS_PIN, LCD_E_PIN, LCD_D4_PIN, LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
@@ -36,10 +36,10 @@ TinyGPSPlus gps;             // Oggetto per la gestione del GPS
 Servo lockServo;             // Oggetto per il controllo del servomotore
 
 // === Variabili di stato ===
+const int ID = 1;            // ID della bici
 bool statoBici = false;      // Stato della bici: true = sbloccata, false = bloccata
 float lat = 0.0, lon = 0.0;  // Coordinate GPS
-int tokenUtente = 0;         // Numero di token dell'utente
-int distanzaMappa = 0;       // Distanza dalla mappa in metri
+//int distanzaMappa = 0;       // Distanza dalla mappa in metri
 unsigned long lastUpdate = 0; // Timestamp dell'ultimo aggiornamento
 
 void setup() {
@@ -102,12 +102,23 @@ void loop() {
     int code = http.GET();
     if (code == 200) {
       String payload = http.getString();
-      // Esempio JSON: {"stato":1,"token":120,"distanza":25}
+      /// Esempio JSON: {"stato":1,"token":120,"distanza":25}
       DynamicJsonDocument doc(256);
       deserializeJson(doc, payload);
-      statoBici = doc["stato"];
-      tokenUtente = doc["token"];
-      distanzaMappa = doc["distanza"];
+      auto disponibili = doc["biciclette"];
+      if (disponibili.size() > 0) {
+        for (int i = 0; i < disponibili.size(); i++) {
+          int id = disponibili[i]["id"];
+          if (id == ID) {
+            statoBici = disponibili[i]["stato"];
+            break;
+          }
+        }
+      } else {
+        statoBici = false; // Nessuna bici disponibile
+      }
+      // statoBici = doc["stato"];
+      //distanzaMappa = doc["distanza"];
     }
     http.end();
 
@@ -127,18 +138,15 @@ void loop() {
       lockServo.write(90); // Bloccato
     }
 
-    // Gestione del blocco forzato in base ai token e alla distanza dalla mappa
-    if (tokenUtente <= 15) {
-      suonoAllerta();
-      countdownEBlocco();
-    } else if (distanzaMappa <= 2) {
+    // Gestione del blocco forzato in base alla distanza dal limite della mappa
+    /*if (distanzaMappa <= 2) {
       suonoUscitaMappaLunga();
       countdownEBlocco();
     } else if (distanzaMappa <= 10) {
       suonoPatternContinuo();
     } else if (distanzaMappa <= 20) {
       suonoTreBeep();
-    }
+    }*/
   }
 }
 
