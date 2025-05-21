@@ -11,8 +11,13 @@ header("Content-Type: application/json");
 include("../db/connessioneDB.php");
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     session_start();
-    if (!isset($_SESSION)) {
+    if (empty($_SESSION)) {
         echo json_encode(["error" => "Nessuna sessione trovata."]);
+        exit;
+    }
+
+    if (!isset($_SESSION["id"])) {
+        echo json_encode(["error" => "Utente non autenticato."]);
         exit;
     }
 
