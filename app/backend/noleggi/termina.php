@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 SET ora_fine = ?, distanza_percorsa = ?, prezzo = ?
                                 WHERE id = ?;");
     $ora_fine = date("H:i:s");
-    $prezzo = $PREZZO_PER_MINUTO * time_difference($noleggio["data"], $noleggio["ora_inizio"], $ora_fine);
+    $prezzo = 1 + $PREZZO_PER_MINUTO * time_difference($noleggio["data"], $noleggio["ora_inizio"], $ora_fine);
     $stmt->bind_param("ssii", $ora_fine, $distanza, $prezzo, $noleggio_id);
     if ($stmt->execute()) {
         $stmt = $conn->prepare("SELECT * FROM noleggi
