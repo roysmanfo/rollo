@@ -53,6 +53,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $stmt->close();
 
+    // ? controlla che l'utente abbia dei token per il noleggio
+    $stmt = $conn->prepare("SELECT num_token FROM utenti WHERE utente = ?;");
+    $stmt->bind_param("i", $utente);
+    $stmt->execute();
+    $row = $stmt->get_result()->fetch_assoc();
+    if (empty($row) || $row["num_token"] <= 0) {
+        http_response_code(409);
+        echo json_encode(array("error" => "L'utente non ha abbastaza token per iniziare un nuovo noleggio"));
+        $conn->close();
+        $stmt->close();
+        exit;
+    }
+    $stmt->close();
+
     // * inizia un nuovo noleggio
     $stmt = $conn->prepare("INSERT INTO noleggi (ora_inizio, utente, bicicletta) VALUES (?, ?, ?);");
     $time = date("H:i:s");
@@ -75,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $updateStmt = $conn->prepare("UPDATE biciclette SET stato = 0 WHERE id = ?");
             $updateStmt->bind_param("i", $data["id"]);
             if ($updateStmt->execute());
-            echo "updated";
             $updateStmt->close();
 
             echo json_encode(array("message" => "Noleggio aggiunto con successo", "noleggio" => $noleggio));
