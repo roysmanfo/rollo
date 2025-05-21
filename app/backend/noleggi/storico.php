@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                         FROM noleggi N
                                         JOIN utenti U ON N.utente = U.id
                                         JOIN biciclette B ON N.bicicletta = B.id
-                                        WHERE U.id = ? AND N.ora_fine IS NOT NULL;");
+                                        WHERE U.id = ? AND N.ora_fine IS NOT NULL
+                                        ORDER BY N.data DESC;");
     $query->bind_param("s", $uid);
     $query->execute();
     $result = $query->get_result();
