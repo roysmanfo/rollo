@@ -1,9 +1,9 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router';
-import type { User } from '../api/user';
+// import type { User } from '../api/user';
 
 export default function Navbar() {
-  const [user, setUser] = useState<User | null>(null);
+  // const [user, setUser] = useState<User | null>(null);
   // TODO: implement access control
 
   return (
