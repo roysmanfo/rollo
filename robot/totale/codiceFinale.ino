@@ -3,12 +3,12 @@
 #include <TinyGPSPlus.h>
 #include <HardwareSerial.h>
 #include <LiquidCrystal.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 #include <ArduinoJson.h>
 
 // === PLACEHOLDER GPIO ===
-#define SERVO_PIN         /14  // GPIO per il controllo del servomotore
-#define BUZZER_PIN        /5   // GPIO per il buzzer
+#define SERVO_PIN         21  // GPIO per il controllo del servomotore
+#define BUZZER_PIN        5   // GPIO per il buzzer
 #define LCD_RS_PIN        27  // GPIO per RS del display LCD
 #define LCD_E_PIN         26  // GPIO per E del display LCD
 #define LCD_D4_PIN        25  // GPIO per D4 del display LCD
@@ -16,9 +16,9 @@
 #define LCD_D6_PIN        32  // GPIO per D6 del display LCD
 #define LCD_D7_PIN        14  // GPIO per D7 del display LCD
 #define GPS_RX_PIN        16  // GPIO per RX del modulo GPS
-#define GPS_TX_PIN        4   // GPIO per TX del modulo GPS
-#define greenLEDPin       /18;
-#define redLEDPin         /19;
+#define GPS_TX_PIN        17   // GPIO per TX del modulo GPS
+#define greenLEDPin       18
+#define redLEDPin         19
 
 
 // === WiFi ===
