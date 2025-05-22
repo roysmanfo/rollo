@@ -68,15 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     // * inizia un nuovo noleggio
-    $stmt = $conn->prepare("INSERT INTO noleggi (ora_inizio, utente, bicicletta) VALUES (?, ?, ?);");
+    $stmt = $conn->prepare("INSERT INTO noleggi (data, ora_inizio, utente, bicicletta) VALUES (?, ?, ?, ?);");
+    $date = date("Y-n-d");
     $time = date("H:i:s");
-    $stmt->bind_param("sii", $time, $utente, $bici_id);
-    if ($stmt->execute()) {
+    $stmt->bind_param("ssii", $date, $time, $utente, $bici_id);
+    try {
+        $stmt->execute();
         $stmt = $conn->prepare("SELECT id, data FROM noleggi
                                     WHERE ora_inizio=? AND utente=? AND bicicletta=?;");
         $stmt->bind_param("sii", $time, $utente, $bici_id);
         $stmt->execute();
-        if ($data = $stmt->get_result()->fetch_assoc()) {
+        $data = $stmt->get_result();
+        $data = $data->fetch_assoc();
+        if ($data) {
             $noleggio = array(
                 "id" => $data["id"],
                 "data" => $data["data"],
@@ -95,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo json_encode(array("error" => "Impossibile registrare il nuovo noleggio."));
         }
-    } else {
+    } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(array("error" => "Impossibile registrare il nuovo noleggio."));
     }
