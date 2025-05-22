@@ -17,7 +17,7 @@
 			$id_dispositivo = $data["id_dispositivo"];
 			
 			//preparazione dei valori e inserimento nella query
-			$stmt = $conn -> prepare("UPDATE IoT SET latitudine = ?, longitudine = ? WHERE id_Dispositivo = ?");
+			$stmt = $conn -> prepare("UPDATE iot SET latitudine = ?, longitudine = ? WHERE id_Dispositivo = ?");
 			$stmt -> bind_param("ddi", $latitudine, $longitudine, $id_dispositivo);
 			$ris = $stmt -> execute();
 			
