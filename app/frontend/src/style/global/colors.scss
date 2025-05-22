@@ -2,7 +2,7 @@
 $primary: rgba(30, 47, 68, 1);
 $secondary: rgba(244, 248, 251, 1);
 $ternary: #152b43;
-$accent1: rgba(166, 35, 65, 1);
+$accent1: rgb(166, 35, 65);
 $accent2: rgba(86, 108, 135, 1);
 
 /* Gradients */
@@ -15,4 +15,3 @@ $gradientBottomRight: linear-gradient(135deg, $primary, $secondary, $ternary, $a
 $gradientTopLeft: linear-gradient(225deg, $primary, $secondary, $ternary, $accent1, $accent2);
 $gradientBottomLeft: linear-gradient(315deg, $primary, $secondary, $ternary, $accent1, $accent2);
 $gradientRadial: radial-gradient($primary, $secondary, $ternary, $accent1, $accent2);
-

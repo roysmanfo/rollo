@@ -17,11 +17,11 @@ export default function Navbar() {
         <Link to="/sedi">Sedi</Link>
         <Link to="/mobile">App mobile</Link>
       </ul>
-      <div className="loginBtns">
+      {/* <div className="loginBtns">
         <Link to="/auth">
           <button>Login</button>
         </Link>
-      </div>
+      </div> */}
     </nav>
   );
 }

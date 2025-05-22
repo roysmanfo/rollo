@@ -3,18 +3,22 @@ import Navbar from '../components/Navbar';
 import '../style/components/navbar.scss';
 import '../style/pages/home.scss';
 
+import HeroVideo from '../media/videos/home-bg.mp4';
 import { useRef } from 'react';
 import useIsVisible from '../hooks/visible';
 import { useCounter } from '../hooks/useCounter';
 
 import Phone from '../media/img/Free_iPhone_16_Mockup_2.png';
+import { Link } from 'react-router';
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <header className="home-hero">
-        <div className="bg" />
+        <video autoPlay muted loop>
+          <source src={HeroVideo} type="video/mp4" />
+        </video>
         <div className="fade"></div>
         <div className="presentation">
           <h1 className="slogan">Ride Your Way</h1>
@@ -33,10 +37,18 @@ export default function Home() {
         <section className="home-app">
           <div className="desc">
             <h1>Scarica l'app mobile</h1>
+            <p>
+              Scarica la nostra app mobile per accedere facilmente al servizio di bike sharing.
+              <br />
+              <Link to={'/mobile'}>Disponibile per iOS e Android.</Link>
+            </p>
           </div>
           <div className="app-img">
             <img src={Phone} alt="phone with app preview" width="100%" />
           </div>
+        </section>
+        <section className="last">
+          <div className="bike"></div>
         </section>
       </main>
     </>

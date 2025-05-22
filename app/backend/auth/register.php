@@ -80,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             http_response_code(400);
             echo json_encode(array("error" => "OTP mancante."));
         }
-        $result->close();
     } else {
         http_response_code(400);
         echo json_encode(array("error" => "Parametri mancanti."));
