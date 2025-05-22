@@ -1,6 +1,0 @@
-Ciao. Sto sviluppando un progetto scolastico di informatica che va dalla progettazione del database
-allo sviluppo della rete fino alla webapp. In allegato ti ho dato il file della wbs del progetto in cui
-sono indicate le attività chiave. In questo momento sto trattando la parte di [].
-Non possiedo alcuna conoscenza in questo tema e voglio che mi elenchi gli argomenti necessari da imparare
-e se riesci anche alcuni siti dove posso imparare. Dispongo di un mese per completare il lavoro quindi mi
-servono le conoscenze essenziali per completare il compito.
