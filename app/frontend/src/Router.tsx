@@ -13,7 +13,7 @@ export default function Router() {
         <Route path="/mobile" element={<Mobile />} />
         <Route path="/sedi" element={<Sedi />} />
         <Route path="/auth" element={<Auth />} />
-        {// <Route path="/admin/dashboard" element={<Dashboard />} />}
+        {/* <Route path="/admin/dashboard" element={<Dashboard />} />*/}
       </Routes>
     </BrowserRouter>
   );
