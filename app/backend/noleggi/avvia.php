@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     // ? controlla che l'utente abbia dei token per il noleggio
-    $stmt = $conn->prepare("SELECT num_token FROM utenti WHERE utente = ?;");
+    $stmt = $conn->prepare("SELECT num_token FROM utenti WHERE id=?;");
     $stmt->bind_param("i", $utente);
     $stmt->execute();
     $row = $stmt->get_result()->fetch_assoc();

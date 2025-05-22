@@ -17,10 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         if (!isset($_SESSION)) {
             echo json_encode(["error" => "Nessuna sessione trovata."]);
             exit;
-        } else if (isset($_SESSION["id"]) && $_SESSION["id"] !== $id) {
+        } else if (isset($_SESSION["id"]) && $_SESSION["id"] != $id) {
             // solo gli admin possono visualizzare le informazioni di altri utenti
-            if (empty($_SESSION["ruolo"]) || $_SESSION["ruolo"] !== "admin") {
-                echo var_dump($_SESSION);
+            if (empty($_SESSION["ruolo"]) || $_SESSION["ruolo"] != "admin") {
                 echo json_encode(["error" => "Non hai i necessari permessi per controllare lo storico di questo utente."]);
                 exit;
             }
