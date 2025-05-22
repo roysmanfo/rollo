@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-export default function Dashboard() {
+export default function Dashboard(){
+  return <p>No dashboard</p>
+}
+/*
+function _Dashboard() {
   const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
@@ -59,3 +63,4 @@ export default function Dashboard() {
     </>
   );
 }
+*/
