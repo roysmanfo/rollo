@@ -10,11 +10,11 @@ import { Colors } from '@/constants/Colors';
 
 export default function PresentationPage() {
   const images = [
-    require('@/assets/images/home/slides/simple.jpg'),
-    require('@/assets/images/home/slides/veloce.png'),
-    require('@/assets/images/home/slides/economica.jpg'),
-    require('@/assets/images/home/slides/sostenibile.jpg'),
-    require('@/assets/images/home/slides/disponibile.jpg'),
+    require('@/assets/images/home/slides/semplice.webp'),
+    require('@/assets/images/home/slides/veloce.webp'),
+    require('@/assets/images/home/slides/economico.webp'),
+    require('@/assets/images/home/slides/sostenibile.webp'),
+    require('@/assets/images/home/slides/disponibile.webp'),
   ];
 
   const slides = [
